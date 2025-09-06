@@ -1,0 +1,38 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Create extension package
+      run: |
+        zip -r x-intent-kun-${{ github.ref_name }}.zip . \
+          -x "*.git*" "node_modules/*" "*.md" ".github/*" \
+          "*.log" "*.tmp" ".DS_Store" "Thumbs.db"
+    
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: X Intentくん ${{ github.ref }}
+        draft: false
+        prerelease: false
+    
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./x-intent-kun-${{ github.ref_name }}.zip
+        asset_name: x-intent-kun-${{ github.ref_name }}.zip
+        asset_content_type: application/zip

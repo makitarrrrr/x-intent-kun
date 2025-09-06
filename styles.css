@@ -1,0 +1,46 @@
+/* ファイル: styles.css */
+:root {
+  --bg: #0f1419;
+  --panel: #161d26;
+  --text: #e6e9ed;
+  --muted: #9aa4af;
+  --accent: #1d9bf0;
+  --danger: #e55353;
+  --ok: #47c97f;
+  --chip: #223041;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+header { padding: 16px 20px; border-bottom: 1px solid #223; }
+h1 { margin: 0; font-size: 20px; }
+.sub { color: var(--muted); margin: 4px 0 0; }
+.container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 16px; }
+@media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+section { background: var(--panel); border: 1px solid #223; border-radius: 10px; padding: 16px; }
+h2, h3 { margin-top: 0; }
+label { display: block; margin: 8px 0; }
+input, textarea, select, button {
+  width: 100%; background: #0b1118; color: var(--text); border: 1px solid #273447;
+  border-radius: 8px; padding: 10px; font-size: 14px;
+}
+textarea { resize: vertical; }
+.row { display: flex; gap: 8px; }
+.half { flex: 1 1 50%; }
+.quarter { flex: 1 1 25%; min-width: 140px; }
+.actions { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.actions button { width: auto; background: var(--accent); border-color: #2a93e6; cursor: pointer; }
+.actions button#copyUrl { background: #2b3645; border-color: #2b3645; }
+.actions button:active { transform: translateY(1px); }
+.count { margin-left: auto; color: var(--muted); }
+.add-snippet { display: grid; grid-template-columns: 140px 1fr 1fr 120px; gap: 8px; margin-bottom: 8px; }
+.lists { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.list { min-height: 100px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--chip); color: var(--text); border-radius: 999px; padding: 6px 10px;
+}
+.chip .label { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip .btn { background: transparent; border: none; color: var(--muted); cursor: pointer; padding: 0 4px; width: auto; }
+.chip .btn:hover { color: var(--text); }
+footer { padding: 10px 16px; color: var(--muted); }
